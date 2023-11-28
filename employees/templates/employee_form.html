@@ -1,0 +1,126 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block main-content %}
+<div class="main-panel">
+  <div class="content-wrapper ">
+    <div class="row justify-content-center">
+      <div class="col-sm-9 grid-margin stretch-card  ">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">New Employee</h4>
+            <div>
+              <!-- <a type="submit" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn"
+                href="{% url 'employees' %}">Save</a> -->
+                
+            </div>
+            <form action="{% url 'employeeform' %}" method="post">
+              {% csrf_token %}
+              <div class="container">
+                <div class="row mt-4 ">
+                  <div class="col">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>{{ form.employee_name.label }}</td>
+                          <td>{{ form.employee_name}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.dob.label }}</td>
+                          <td>{{ form.dob}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.age.label }}</td>
+                          <td>{{ form.age }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.gender.label }}</td>
+                          <td>{{ form.gender}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.address.label }}</td>
+                          <td>{{ form.address}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.country.label }}</td>
+                          <td>{{ form.country}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.state.label }}</td>
+                          <td>{{ form.state}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.city.label }}</td>
+                          <td>{{ form.city}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.pincode.label }}</td>
+                          <td>{{ form.pincode}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.phone_no.label }}</td>
+                          <td>{{ form.phone_no}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>{{ form.role.label }}</td>
+                          <td>{{ form.role}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.team.label }}</td>
+                          <td>{{ form.team}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.username.label }}</td>
+                          <td>{{ form.username}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.password.label }}</td>
+                          <td>{{ form.password}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.email.label }}</td>
+                          <td>{{ form.email}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.profile_img.label }}</td>
+                          <td>{{ form.profile_img }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <button type="submit">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dobField = document.getElementById('id_dob');
+    const ageField = document.getElementById('id_age');
+
+    dobField.addEventListener('input', function () {
+      const dobValue = dobField.value;
+      if (dobValue) {
+        const dobDate = new Date(dobValue);
+        const today = new Date();
+        const age = today.getFullYear() - dobDate.getFullYear() - (today.getMonth() < dobDate.getMonth() || (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate()) ? 1 : 0);
+        ageField.value = age;
+      } else {
+        ageField.value = '';
+      }
+    });
+  });
+</script>
+
+{% endblock %}

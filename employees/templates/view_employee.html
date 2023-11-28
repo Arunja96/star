@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block main-content %}
+<div class="main-panel">
+  <div class="content-wrapper ">
+    <div class="row justify-content-center">
+      <div class="col-sm-9 grid-margin stretch-card  ">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Employee</h4>
+            <div>
+              <!-- <a type="submit" class="btn btn-block btn-primary btn-sm font-weight-medium auth-form-btn"
+                href="{% url 'employees' %}">Save</a> -->
+
+            </div>
+            {% if record.profile_img %}
+            <img style="width: 100px;" class="rounded float-end" src={{record.profile_img.url}}/>
+            {% else %}
+            <img style="width: 100px;" class="rounded float-end" src="{% static 'images/default/default_emp.png' %}" alt="image" />
+            {% endif %}
+            <form action="{% url 'employeeform' %}" method="post">
+              {% csrf_token %}
+              <div class="container">
+                <div class="row mt-4 ">
+                  <div class="col">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>{{ form.employee_name.label }}</td>
+                          <td>{{ record.employee_name }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.dob.label }}</td>
+                          <td>{{ record.dob }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.age.label }}</td>
+                          <td>{{ record.age }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.gender.label }}</td>
+                          <td>{{ record.gender }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.address.label }}</td>
+                          <td>{{ record.address }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.country.label }}</td>
+                          <td>{{ record.country }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.state.label }}</td>
+                          <td>{{ record.state }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.city.label }}</td>
+                          <td>{{ record.city }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.pincode.label }}</td>
+                          <td>{{ record.pincode }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.phone_no.label }}</td>
+                          <td>{{ record.phone_no }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>{{ form.role.label }}</td>
+                          <td>{{ record.role }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.team.label }}</td>
+                          <td>{{ record.team }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.username.label }}</td>
+                          <td>{{ record.username}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.password.label }}</td>
+                          <td>{{ record.password}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.email.label }}</td>
+                          <td>{{ record.email}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.profile_img.label }}</td>
+                          <td>{{ record.profile_img}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- <button type="submit">Save</button> -->
+            </form>
+            <div>
+              <a href="{% url 'deleterecord' record.id %}" class="btn btn-secondary">Delete</a>
+              <a href="{% url 'updaterecord' record.id %}" class="btn btn-secondary">Update</a>
+              <a href="{% url 'employees' %}" class="btn btn-secondary">back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+</div>
+{% endblock %}
+

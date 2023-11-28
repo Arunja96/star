@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block main-content %}
+<div class="main-panel">
+  <div class="content-wrapper ">
+    <div class="row justify-content-center">
+      <div class="col-sm-9 grid-margin stretch-card  ">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Employee</h4>
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="container">
+                <div class="row mt-4 ">
+                  <div class="col">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>{{ form.team.label }}</td>
+                          <td>{{ form.team}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ form.team_manager.label }}</td>
+                          <td>{{ form.team_manager}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-secondary" type="submit">Update</button>
+            </form>
+            <div>
+              <a href="{% url 'teams' %}" class="btn btn-secondary">back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+</div>
+{% endblock %}
